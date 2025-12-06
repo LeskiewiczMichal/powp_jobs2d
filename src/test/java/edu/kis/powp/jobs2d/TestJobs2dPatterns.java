@@ -1,5 +1,7 @@
 package edu.kis.powp.jobs2d;
 
+import edu.kis.powp.jobs2d.drivers.adapter.SpecialLineDrawerAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.SpecialLineDrawerAdapter.LineType;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener.FigureType;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -45,7 +47,11 @@ public class TestJobs2dPatterns {
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
 		Job2dDriver testDriver = new DrawerAdapter();
-		DriverFeature.addDriver("Buggy Simulator", testDriver);
+		Job2dDriver specialLineDriver = new SpecialLineDrawerAdapter(LineType.SPECIAL);
+		Job2dDriver dottedLineDriver = new SpecialLineDrawerAdapter(LineType.DOTTED);
+		DriverFeature.addDriver("Default Driver", testDriver);
+		DriverFeature.addDriver("Special Line Driver", specialLineDriver);
+		DriverFeature.addDriver("Dotted Line Driver", dottedLineDriver);
 
 		DriverFeature.updateDriverInfo();
 	}
